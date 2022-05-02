@@ -3,7 +3,7 @@ Sistema desenvolvido em django com a finalidade de gerenciar e exibir vendas.
 
 # Executando projeto
 
-Alterar a sequencia de fim de linha para LF ao inves de CRLF
+Alterar a sequencia de fim de linha para LF ao inves de CRLF <br>
 ````docker-compose up --build````
 ## URL: ````http://localhost:8000/````
 
