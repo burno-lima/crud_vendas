@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+
+{% block title %} Delete {% endblock %}
+
+{% block body %}
+<div class="form-group" style="text-align:center">
+    <section>
+        <form method="POST">
+            {% csrf_token %}
+            <h2>Deseja apagar a venda? ID:{{ order.id }}</h2>
+            <button type="submit" class="btn btn-success">Confirmar</button>
+            <a href="/orders" class="btn btn-danger">Cancelar</a>
+        </form>
+    </section>
+</div>
+{% endblock %}

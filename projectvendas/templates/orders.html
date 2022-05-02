@@ -1,0 +1,55 @@
+{% extends 'index.html' %} {% block title %} Produtos {% endblock %} {% block body %}
+<div class="form-group" style="text-align:center">
+    <section>
+        <div style="text-align:center">
+            <a href="{% url 'create_order' %}" class="btn btn-success">Adicionar Venda</a>
+        </div>
+        <div style="text-align:left ">
+            <a href="{% url 'export' %}" class="btn btn-primary">Exportar CSV</a>
+        </div>
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">QTD Produto</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <th scope="row">{{ order.id }}</th>
+                    <td>{{ order.date }}</td>
+                    <td>{{ order.value }}</td>
+                    <td>{{ order.quantity }}</td>
+                    <td>{{ order.status }}</td>
+                    <td>
+                        <a href="{% url 'update_order' order.id %}" class="btn btn-warning">Editar</a> {% if order %}
+                        <a href="{% url 'delete_order' order.id %}" class="btn btn-danger">Deletar</a> {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="pagination">
+            <span class="step-links">
+                {% if orders.has_previous %}
+                <a href="?page=1" class="btn btn-secondary">Primeira Página</a>
+                <a href="?page={{ orders.previous_page_number }}" class="btn btn-secondary">Anterior</a>
+                {% endif %}
+
+                <span class="current">
+                    Página {{ orders.number }} de {{ orders.paginator.num_pages }}.
+                </span> {% if orders.has_next %}
+            <a href="?page={{ orders.next_page_number }}" class="btn btn-secondary">Proxima</a>
+            <a href="?page={{ orders.paginator.num_pages }}" class="btn btn-secondary">Ultima Página</a> {% endif %}
+            </span>
+        </div>
+    </section>
+
+    {% endblock %}

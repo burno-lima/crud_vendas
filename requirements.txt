@@ -1,0 +1,12 @@
+asgiref==3.5.1
+autopep8==1.6.0
+beautifulsoup4==4.11.1
+Django==4.0.4
+django-bootstrap-datepicker-plus==4.0.0
+django-bootstrap4==22.1
+pycodestyle==2.8.0
+soupsieve==2.3.2.post1
+sqlparse==0.4.2
+toml==0.10.2
+tzdata==2022.1
+psycopg2

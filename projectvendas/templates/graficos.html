@@ -1,0 +1,98 @@
+{% extends 'index.html' %} {% block title %} Gráficos {% endblock %} {% block body %}
+<div class="container">
+<!-- 1ª Graficos -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {
+        'packages': ['corechart']
+    });
+    google.charts.setOnLoadCallback(drawTotalByMonthChart);
+
+    function drawTotalByMonthChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Ano/Mes', 'Vendas'], 
+            {% for row in top_by_month %}
+            [ '{{ row.year_month }}', {{ row.total }}],
+            {% endfor %}
+        ]);
+
+        var options = {
+            title: 'Total de vendas por mês',
+            curveType: 'function',
+            legend: {
+                position: 'bottom'
+            }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+    }
+</script>
+
+<!-- 2ª Graficos -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawTotalByStatusChart);
+
+  function drawTotalByStatusChart() {
+
+    var data = google.visualization.arrayToDataTable([
+      ['Task', 'Hours per Day'],
+      {% for row in  total_by_status %}
+      [' {{ row.status }}', {{  row.total }}],
+      {% endfor %}
+    ]);
+
+    var options = {
+      title: 'Total de vendas por status'
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+    chart.draw(data, options);
+  }
+</script>
+
+<!-- 3ª Graficos -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Dia', 'Total'],
+          {% for row in top_10_days %}
+          [ '{{ row.day }}', {{ row.total }}],
+          {% endfor %}
+
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Top 10 dias com mais vendas',
+            
+          },
+          bars: 'horizontal' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+
+
+<!-- 1ª Graficos -->
+<div id="curve_chart" style="width: 1300px; height: 500px"></div>
+
+
+<!-- 2ª Graficos -->
+<div id="piechart" style="width: 1300px; height: 500px;"></div>
+
+<!-- 3ª Graficos -->
+<div id="barchart_material" style="width: 1300px; height: 500px;"></div>
+</div>
+{% endblock %}

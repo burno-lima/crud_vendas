@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+
+{% block title %} Venda {% endblock %}
+
+{% block body %}
+<div class="form-group">
+    <section>
+        <h1>Venda</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit" class="btn btn-success">Salvar</button>
+            <a href="/orders" class="btn btn-danger">Cancelar</a>
+        </form>
+
+    </section>
+</div>
+{% endblock %}
