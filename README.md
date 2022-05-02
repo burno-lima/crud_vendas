@@ -4,6 +4,7 @@ Sistema desenvolvido em django com a finalidade de gerenciar e exibir vendas.
 # Executando projeto
 
 ````docker-compose up --build````
+## URL: ````http://localhost:8000/````
 
 
 ## Importando vendas
