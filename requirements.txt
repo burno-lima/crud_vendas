@@ -1,7 +1,7 @@
 asgiref==3.5.1
 autopep8==1.6.0
 beautifulsoup4==4.11.1
-Django==4.0.4
+Django==4.1.13
 django-bootstrap-datepicker-plus==4.0.0
 django-bootstrap4==22.1
 pycodestyle==2.8.0
